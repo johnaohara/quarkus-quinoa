@@ -149,9 +149,9 @@ public class QuinoaConfig {
     }
 
     public QuinoaHandlerConfig toHandlerConfig(boolean prodMode, final HttpBuildTimeConfig httpBuildTimeConfig) {
-        final Set<String> compressMediaTypes = httpBuildTimeConfig.compressMediaTypes.map(Set::copyOf).orElse(Set.of());
+        final Set<String> compressMediaTypes = httpBuildTimeConfig.compressMediaTypes().map(Set::copyOf).orElse(Set.of());
         return new QuinoaHandlerConfig(getNormalizedIgnoredPathPrefixes(), indexPage, prodMode,
-                httpBuildTimeConfig.enableCompression, compressMediaTypes);
+                httpBuildTimeConfig.enableCompression(), compressMediaTypes);
     }
 
     private Optional<String> readExternalConfigPath(Config config, String key) {
